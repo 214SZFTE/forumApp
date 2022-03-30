@@ -1,0 +1,22 @@
+<!-- Users login / logout form -->
+
+<div ng-controller="loginCtrl" class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+    <div ng-if="!loggedIn">
+        <h3 class="mt-3">Belépés</h3>
+        <hr>
+        <div class="form-floating mb-3">
+            <input type="email" class="form-control" id="floatingInput" placeholder="E-mail cím...">
+            <label for="floatingInput">Email cím...</label>
+        </div>
+        <div class="form-floating mb-3">
+            <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó...">
+            <label for="floatingPassword">Jelszó...</label>
+        </div>
+        <button class="btn btn-primary" ng-click="login()">Belépés</button>
+        <a class="btn btn-primary" href="#!/reg">Regisztráció</a>
+
+    </div>
+    <div ng-if="loggedIn">
+        logout
+    </div>
+</div>
