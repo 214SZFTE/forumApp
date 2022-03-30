@@ -31,7 +31,27 @@ app.controller('loginCtrl', function($scope, dbFactory) {
         }
     }
 
-    $scope.login = function() {}
+    $scope.login = function() {
+        if ($scope.user.name == null || $scope.user.pass == null) {
+            alert('Add meg a belépési adatokat!');
+        } else {
+            dbFactory.logincheck('user', $scope.user.email, CryptoJS.SHA1($scope.user.pass).toString()).then(function(res) {
+                if (res.data.length == 0) {
+                    alert('Hibás belépési adatok!');
+                } else {
+                    $rootScope.loggedIn = true;
+                    $scope.loggedUser = {
+                        ID: res.data[0].ID,
+                        name: res.data[0].name,
+                        email: $scope.user.email,
+                        rights: res.data[0].rights
+                    }
+                    sessionStorage.setItem('keymanager', angular.toJson($scope.userData));
+                    $location.path('/dashboard');
+                }
+            });
+        }
+    }
 
     $scope.logout = function() {}
 });
