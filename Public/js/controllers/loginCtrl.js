@@ -1,4 +1,4 @@
-app.controller('loginCtrl', function($scope, dbFactory) {
+app.controller('loginCtrl', function($scope, $location, $rootScope, dbFactory) {
     $scope.user = {};
 
     $scope.regist = function() {
@@ -35,23 +35,41 @@ app.controller('loginCtrl', function($scope, dbFactory) {
         if ($scope.user.name == null || $scope.user.pass == null) {
             alert('Add meg a belépési adatokat!');
         } else {
-            dbFactory.logincheck('user', $scope.user.email, CryptoJS.SHA1($scope.user.pass).toString()).then(function(res) {
+            dbFactory.logincheck('user', $scope.user.name, CryptoJS.SHA1($scope.user.pass).toString()).then(function(res) {
                 if (res.data.length == 0) {
                     alert('Hibás belépési adatok!');
                 } else {
+                    $rootScope.loggedUser = res.data[0].username;
                     $rootScope.loggedIn = true;
-                    $scope.loggedUser = {
+                    $scope.userData = {
                         ID: res.data[0].ID,
-                        name: res.data[0].name,
-                        email: $scope.user.email,
+                        name: res.data[0].username,
+                        email: res.data[0].email,
+                        avatar: res.data[0].avatar_path,
                         rights: res.data[0].rights
                     }
-                    sessionStorage.setItem('keymanager', angular.toJson($scope.userData));
-                    $location.path('/dashboard');
+                    sessionStorage.setItem('forum-app', angular.toJson($scope.userData));
+                    $location.path('#!/');
+
+                    /*   let data = {
+                           last_login: ''
+                       }
+                       dbFactory.update('user', $scope.userData.ID, data).then(function(res) {
+                     */
+
+                    //   });
                 }
             });
         }
     }
 
-    $scope.logout = function() {}
+    $scope.logout = function() {
+        sessionStorage.removeItem('forum-app');
+        $rootScope.loggedUser = "";
+        $rootScope.loggedUserID = null;
+        $rootScope.loggedUserRight = "";
+        $rootScope.loggedUserAvatar = "";
+        $rootScope.loggedIn = false;
+        $location.path('#!/');
+    }
 });
