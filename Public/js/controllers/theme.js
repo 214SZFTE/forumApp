@@ -10,7 +10,7 @@ app.controller('themeCtrl', function($scope,dbFactory) {
                 else {
 
                     let data = {
-                            user_id:"",	
+                            user_id:$rootScope.loggedUserID,	
                             name:$scope.themeTitle,
                             timestamp:null
                     }
