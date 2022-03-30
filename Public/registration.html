@@ -1,0 +1,26 @@
+<!-- Users login / logout form -->
+
+<div ng-controller="loginCtrl" class="col-sm-10 offset-sm-1 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+
+    <h3 class="mt-3">Regisztráció</h3>
+    <hr>
+    <div class="form-floating mb-3">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Név...">
+        <label for="floatingInput">Név...</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="email" class="form-control" id="floatingInput" placeholder="E-mail cím...">
+        <label for="floatingInput">Email cím...</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó...">
+        <label for="floatingPassword">Jelszó...</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó megerősítése...">
+        <label for="floatingPassword">Jelszó megerősítése...</label>
+    </div>
+    <button class="btn btn-primary" ng-click="regist()">Regisztráció</button>
+    <a class="btn btn-primary" href="#!/login">Vissza a belépésre</a>
+
+</div>

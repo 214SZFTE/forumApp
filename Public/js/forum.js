@@ -5,3 +5,19 @@ app.run(function($rootScope) {
     $rootScope.company = 'Bajai SZC Türr István Technikum';
     $rootScope.author = '2/14.SZFTE';
 });
+
+app.config(function($routeProvider) {
+    $routeProvider
+        .when('/', {
+            templateUrl: 'main.html',
+            controller: 'mainCtrl'
+        })
+        .when('/reg', {
+            templateUrl: 'registration.html',
+            controller: 'loginCtrl'
+        })
+        .when('/login', {
+            templateUrl: 'login.html',
+            controller: 'loginCtrl'
+        });
+});
