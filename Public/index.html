@@ -21,11 +21,14 @@
     <script src="js/dbFactory.js"></script>
 
     <!-- Controllers -->
+    <script src="js/controllers/mainCtrl.js"></script>
     <script src="js/controllers/loginCtrl.js"></script>
     <script src="js/controllers/userCtrl.js"></script>
 </head>
 
 <body>
+
+
     <nav class="navbar navbar-expand-lg navbar-light">
         <div class="container-fluid">
             <a class="navbar-brand" href="#">Menü</a>
@@ -66,7 +69,7 @@
         </div>
         </header>
 
-        <main class="container">
+        <main class="container" ng-view>
 
         </main>
 
