@@ -1,0 +1,14 @@
+.navbar{
+    background-color: #e3f2fd;
+}
+
+header {
+    background-image: url('../assets/header.jpg');
+    background-color: aqua;
+    height: 300px;
+    padding: 100px;
+    margin-bottom: 20px;
+    text-align: center;
+    color: white;
+    font-size: 300%;
+}
