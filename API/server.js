@@ -18,11 +18,11 @@ var db = mysql.createPool({
 
 app.post('/login', (req, res) => {
     let data = {
-        name: req.body.username,
+        email: req.body.username,
         pass: req.body.passwd,
         table: req.body.table
     }
-    db.query(`SELECT * FROM ${data.table} WHERE nev='${data.name}' AND jelszo='${data.pass}'`, (err, results) => {
+    db.query(`SELECT * FROM ${data.table} WHERE email='${data.email}' AND password='${data.pass}'`, (err, results) => {
         if (err) throw err;
         res.json(results);
     });
