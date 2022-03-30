@@ -1,7 +1,7 @@
 require('dotenv').config();
 const express = require('express');
 const app = express();
-const mysql=require('mysql');
+const mysql = require('mysql');
 var cors = require('cors');
 app.use(cors());
 app.use(express.json());
@@ -18,7 +18,7 @@ var db = mysql.createPool({
 
 app.post('/login', (req, res) => {
     let data = {
-        email: req.body.username,
+        email: req.body.email,
         pass: req.body.passwd,
         table: req.body.table
     }

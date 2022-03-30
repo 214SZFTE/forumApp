@@ -1,10 +1,10 @@
-<div ng-if="!loggedIn">
+<div class="d-flex" ng-if="!loggedIn">
     <div class="form-floating m-1">
-        <input type="email" class="form-control" id="floatingInput" placeholder="E-mail cím...">
+        <input type="email" class="form-control" id="floatingInput" placeholder="E-mail cím..." ng-model="user.name">
         <label for="floatingInput">Email cím...</label>
     </div>
     <div class="form-floating m-1">
-        <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó...">
+        <input type="password" class="form-control" id="floatingPassword" placeholder="Jelszó..." ng-model="user.pass">
         <label for="floatingPassword">Jelszó...</label>
     </div>
     <div class="form-floating m-1">
@@ -14,9 +14,9 @@
         <a class="btn btn-primary p-3" type="button" href="#!/reg">Regisztráció</a>
     </div>
 </div>
-<div ng-if="!loggedIn">
+<div class="d-flex" ng-if="loggedIn">
     <div class="form-floating m-1">
-        <input type="text" class="form-control" id="floatingInput" ng-model="loggedUser.name" ng-disabled>
+        <input type="text" class="form-control" id="floatingInput" ng-model="loggedUser" disabled>
         <label for="floatingInput">Felhasználónév...</label>
     </div>
     <div class="form-floating m-1">
