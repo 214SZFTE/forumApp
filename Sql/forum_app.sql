@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Gép: 127.0.0.1
--- Létrehozás ideje: 2022. Már 30. 17:55
+-- Létrehozás ideje: 2022. Már 30. 18:02
 -- Kiszolgáló verziója: 10.4.6-MariaDB
 -- PHP verzió: 7.3.8
 
@@ -79,7 +79,8 @@ CREATE TABLE `user` (
   `reg` datetime DEFAULT NULL,
   `last_login` datetime DEFAULT NULL,
   `is_logged_in` tinyint(4) DEFAULT NULL,
-  `session_id` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL
+  `session_id` varchar(255) COLLATE utf8_hungarian_ci DEFAULT NULL,
+  `rights` tinyint(4) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_hungarian_ci;
 
 --
