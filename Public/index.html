@@ -57,30 +57,30 @@
                 <div class="d-flex">
                     <input class="form-control me-2" type="text" placeholder="Felhasználónév">
                     <input class="form-control me-2" type="password" placeholder="Jelszó">
-                    <button class="btn btn-primary" type="button">Belépés</button>    
+                    <button class="btn btn-primary" type="button">Belépés</button>
                 </div>
-                <div>
-                    <button class="btn btn-primary" type="button">Regisztráció</button>
+                <div class="m-2">
+                    <a class="btn btn-primary" type="button" href="#!/reg">Regisztráció</a>
                 </div>
             </div>
         </div>
-      </nav>
-      
-        <header class="container-fluid">
+    </nav>
+
+    <header class="container-fluid">
         <div class="container">
             <h1>{{appname}}</h1>
         </div>
-        </header>
+    </header>
 
-        <main class="container" ng-view>
+    <main class="container" ng-view>
 
-        </main>
+    </main>
 
-        <footer class="container-fluid">
-            <div class="container">
-                {{company}} - {{author}}
-            </div>
-        </footer>
+    <footer class="container-fluid">
+        <div class="container">
+            {{company}} - {{author}}
+        </div>
+    </footer>
 
 </body>
 

@@ -1,5 +1,5 @@
 app.factory('dbFactory', function($http, $q) {
-    let url = 'http://localhost:3000';
+    let url = 'http://localhost:8080';
     return {
         logincheck: function(tablename, email, pass) {
             let deferred = $q.defer();
@@ -11,36 +11,6 @@ app.factory('dbFactory', function($http, $q) {
             $http.post(url + '/login', data).then(
                 function(res) {
                     deferred.resolve(res);
-                },
-                function(err) {
-                    deferred.reject(err);
-                }
-            );
-            return deferred.promise;
-        },
-
-        // CREATE DATABASE
-        createDB: function(databasename) {
-            let deferred = $q.defer();
-
-            $http.post(url + '/DB/' + databasename).then(
-                function(res) {
-                    deferred.resolve(res.data);
-                },
-                function(err) {
-                    deferred.reject(err);
-                }
-            );
-            return deferred.promise;
-        },
-
-        // CREATE DATABASE
-        createUser: function(user) {
-            let deferred = $q.defer();
-
-            $http.post(url + '/DBuser/add', user).then(
-                function(res) {
-                    deferred.resolve(res.data);
                 },
                 function(err) {
                     deferred.reject(err);
