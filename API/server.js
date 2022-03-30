@@ -54,7 +54,7 @@ app.post('/:table', (req, res) => {
     let table = req.params.table;
     let data = req.body;
 
-    let fields = 'ID';
+    let fields = 'id';
     results = Object.keys(data);
     results.forEach(element => {
         fields += ',' + element;
