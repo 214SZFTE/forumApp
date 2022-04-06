@@ -3,6 +3,7 @@ const express = require('express');
 const app = express();
 const mysql = require('mysql');
 const path = require('path');
+const fs = require('fs');
 var cors = require('cors');
 var multer = require('multer');
 app.use(cors());
@@ -113,7 +114,7 @@ app.patch('/:table/:id', (req, res) => {
 app.delete('/:table/:id', (req, res) => {
     let table = req.params.table;
     let id = req.params.id;
-    db.query(`DELETE FROM ${table} WHERE ID=${id}`, (err, results) => {
+    db.query(`DELETE FROM ${table} WHERE id=${id}`, (err, results) => {
         if (err) throw err;
         res.json(results);
     });
@@ -128,6 +129,19 @@ app.delete('/:table', (req, res) => {
     });
 });
 
+// DELETE uploaded File
+app.delete('/removeFile/:table/:id', (req, res) => {
+    let table = req.params.table;
+    let id = req.params.id;
+    db.query(`SELECT * FROM ${table} WHERE id=${id}`, (err, results) => {
+        let fileName = results[0].avatar_path;
+        fs.rm('../Public/uploads/' + fileName, (err) => {
+            db.query(`UPDATE user SET avatar_path=null WHERE id=${id}`, (err, results) => {
+                res.json(results);
+            });
+        });
+    });
+});
 
 app.listen(port, () => {
     console.log(`Server listening on ${port}...`);

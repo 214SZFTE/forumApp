@@ -5,19 +5,21 @@
     <h3 class="mt-3">Profil adatok módosítása</h3>
     <hr>
     <div class="form-floating mb-3">
-        <input type="text" class="form-control" id="floatingInput" placeholder="Név..." ng-model="user.name">
+        <input type="text" class="form-control" id="floatingInput" placeholder="Név..." ng-model="user.username">
         <label for="floatingInput">Név...</label>
     </div>
     <div class="form-floating mb-3">
         <input type="email" class="form-control" id="floatingInput" placeholder="E-mail cím..." ng-model="user.email">
         <label for="floatingInput">Email cím...</label>
     </div>
-    <div class="form-floating mb-3">
-        <form id="upl">
-            <input type="file" class="form-control" id="floatingInput" placeholder="Profilkép..." file-model="user.pic" accept="image/*">
-        </form>
-
+    <div class="form-floating mb-3" ng-if="user.avatar_path==null">
+        <input type="file" class="form-control" id="floatingInput" placeholder="Profilkép..." file-model="user.pic" accept="image/*">
         <label for="floatingInput">Profilkép...</label>
+    </div>
+    <div class="form-floating mb-3" ng-if="user.avatar_path!=null">
+        <img src="./Public/uploads/{{user.avatar_path}}" alt="" class="img img-thumbnail">
+        <label for="floatingInput">Profilkép...</label>
+        <button class="btn btn-danger" ng-click="profilpicdel()">Profilkép törlése</button>
     </div>
     <button class="btn btn-primary mb-3" ng-click="modify()">Módosítás</button>
     <div>{{serverResponse}}</div>

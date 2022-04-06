@@ -108,6 +108,20 @@ app.factory('dbFactory', function($http, $q) {
             return deferred.promise;
         },
 
+        // DELETE uploaded file
+        fileDelete: function(tablename, id) {
+            let deferred = $q.defer();
+            $http.delete(url + '/removeFile/' + tablename + '/' + id).then(
+                function(res) {
+                    deferred.resolve(res.data);
+                },
+                function(err) {
+                    deferred.reject(err);
+                }
+            );
+            return deferred.promise;
+        },
+
         toChart: function(title, type, div, datapoints, theme, anim,
             exp) {
             var chart = new CanvasJS.Chart(div, {
