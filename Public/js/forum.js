@@ -63,8 +63,6 @@ app.service('fileUpload', function($http, $q) {
         var fd = new FormData();
         fd.append('file', file);
 
-
-
         var deffered = $q.defer();
         $http.post(uploadUrl, fd, {
             transformRequest: angular.identity,
