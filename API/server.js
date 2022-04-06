@@ -2,11 +2,12 @@ require('dotenv').config();
 const express = require('express');
 const app = express();
 const mysql = require('mysql');
+const path = require('path');
 var cors = require('cors');
+var multer = require('multer');
 app.use(cors());
 app.use(express.json());
 const port = process.env.PORT || 3000;
-
 
 var db = mysql.createPool({
     connectionLimit: 10,
@@ -14,6 +15,20 @@ var db = mysql.createPool({
     user: process.env.DBUSER,
     password: process.env.DBPASS,
     database: process.env.DBNAME
+});
+
+var storage = multer.diskStorage({
+    destination: '../Public/uploads/',
+    filename: function(req, file, cb) {
+        cb(null, file.originalname.replace(path.extname(file.originalname), "") + '-' + Date.now() + path.extname(file.originalname))
+    }
+})
+
+var upload = multer({ storage: storage })
+
+app.post('/upload', upload.single('file'), (req, res) => {
+    //console.log('Uploade Successful ', req.file);
+    res.json(req.file.filename);
 });
 
 app.post('/login', (req, res) => {
@@ -54,7 +69,7 @@ app.post('/:table', (req, res) => {
     let table = req.params.table;
     let data = req.body;
 
-    let fields = 'ID';
+    let fields = 'id';
     results = Object.keys(data);
     results.forEach(element => {
         fields += ',' + element;
@@ -88,7 +103,7 @@ app.patch('/:table/:id', (req, res) => {
 
     str = str.substring(0, str.length - 1);
 
-    db.query(`UPDATE ${table} SET ${str} WHERE ID=${id}`, (err, results) => {
+    db.query(`UPDATE ${table} SET ${str} WHERE id=${id}`, (err, results) => {
         if (err) throw err;
         res.json(results);
     });

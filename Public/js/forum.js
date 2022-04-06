@@ -33,5 +33,51 @@ app.config(function($routeProvider) {
         .when('/login', {
             templateUrl: 'login.html',
             controller: 'loginCtrl'
+        })
+        .when('/profilmod', {
+            templateUrl: 'profilmod.html',
+            controller: 'userCtrl'
         });
+});
+
+
+app.directive('fileModel', function($parse) {
+    return {
+        restrict: 'A',
+        link: function(scope, element, attrs) {
+            var model = $parse(attrs.fileModel);
+            var modelSetter = model.assign;
+
+            element.bind('change', function() {
+                scope.$apply(function() {
+                    modelSetter(scope, element[0].files[0]);
+                });
+            });
+        }
+    };
+});
+
+app.service('fileUpload', function($http, $q) {
+
+    this.uploadFileToUrl = function(file, uploadUrl) {
+        var fd = new FormData();
+        fd.append('file', file);
+
+
+
+        var deffered = $q.defer();
+        $http.post(uploadUrl, fd, {
+            transformRequest: angular.identity,
+            headers: { 'Content-Type': undefined }
+
+        }).then(
+            function(res) {
+                deffered.resolve(res);
+            },
+            function(err) {
+                deffered.reject(err);
+            }
+        );
+        return deffered.promise;
+    }
 });

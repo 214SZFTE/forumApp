@@ -42,7 +42,7 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, dbFactory) {
                     $rootScope.loggedUser = res.data[0].username;
                     $rootScope.loggedIn = true;
                     $scope.userData = {
-                        ID: res.data[0].ID,
+                        ID: res.data[0].id,
                         name: res.data[0].username,
                         email: res.data[0].email,
                         avatar: res.data[0].avatar_path,
