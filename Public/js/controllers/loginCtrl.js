@@ -39,7 +39,9 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, dbFactory) {
                 if (res.data.length == 0) {
                     alert('Hibás belépési adatok!');
                 } else {
+                    $rootScope.loggedUserID = res.data[0].id;
                     $rootScope.loggedUser = res.data[0].username;
+                    $rootScope.loggedUserAvatar = res.data[0].avatar_path;
                     $rootScope.loggedIn = true;
                     $scope.userData = {
                         ID: res.data[0].id,
@@ -70,6 +72,7 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, dbFactory) {
         $rootScope.loggedUserRight = "";
         $rootScope.loggedUserAvatar = "";
         $rootScope.loggedIn = false;
+        $scope.user = {};
         $location.path('#!/');
     }
 });

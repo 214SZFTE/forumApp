@@ -15,6 +15,9 @@
     </div>
 </div>
 <div class="d-flex" ng-if="loggedIn">
+    <div class="form-floating m-1" ng-if="loggedUserAvatar != ''">
+        <img src="./Public/uploads/{{loggedUserAvatar}}" alt="avatar" class="img img-thumbnail smallpic">
+    </div>
     <div class="form-floating m-1">
         <input type="text" class="form-control" id="floatingInput" ng-model="loggedUser" disabled>
         <label for="floatingInput">Felhasználónév...</label>

@@ -6,24 +6,38 @@ app.controller('userCtrl', function($scope, $rootScope, dbFactory, fileUpload) {
     });
 
     $scope.modify = function() {
-        var file = $scope.user.pic;
-        var uploadUrl = "http://localhost:8080/upload";
-        if (file != null) {
-            fileUpload.uploadFileToUrl(file, uploadUrl).then(
-                function(res) {
+        if ($scope.user.username == null || $scope.user.email == null) {
+            alert('Nem adtál meg minden adatot!');
+        } else {
 
-                    let data = {
-                        avatar_path: res.data
+            var file = $scope.user.pic;
+            if (file != null) {
+                var uploadUrl = "http://localhost:8080/upload";
+                fileUpload.uploadFileToUrl(file, uploadUrl).then(
+                    function(res) {
+
+                        let data = {
+                            avatar_path: res.data
+                        }
+
+                        dbFactory.update('user', $rootScope.loggedUserID, data);
+
+                        $scope.user.avatar_path = data.avatar_path;
                     }
+                );
+            }
 
-                    dbFactory.update('user', $rootScope.loggedUserID, data);
+            let userdata = {
+                username: $scope.user.username,
+                email: $scope.user.email
+            }
 
-                    $scope.user.avatar_path = data.avatar_path;
-                }
-            );
-
+            dbFactory.update('user', $rootScope.loggedUserID, userdata).then(function(res) {
+                $rootScope.loggedUser = $scope.user.username;
+                alert('Adatok módosítva!');
+            });
         }
-    };
+    }
 
     $scope.profilpicdel = function() {
         dbFactory.fileDelete('user', $rootScope.loggedUserID).then(function(res) {
