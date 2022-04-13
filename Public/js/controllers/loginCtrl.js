@@ -41,6 +41,7 @@ app.controller('loginCtrl', function($scope, $location, $rootScope, dbFactory) {
                 } else {
                     $rootScope.loggedUserID = res.data[0].id;
                     $rootScope.loggedUser = res.data[0].username;
+                    $rootScope.loggedUserRight = res.data[0].rights;
                     $rootScope.loggedUserAvatar = res.data[0].avatar_path;
                     $rootScope.loggedIn = true;
                     $scope.userData = {
