@@ -45,6 +45,10 @@ app.config(function($routeProvider) {
         .when('/theme', {
             templateUrl: 'theme.html',
             controller: 'themeCtrl'
+        })
+        .when('/forumtemak', {
+            templateUrl: 'forum-theme.html',
+            controller: 'themeCtrl'
         });
 
 });
