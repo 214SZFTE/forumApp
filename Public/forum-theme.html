@@ -1,0 +1,32 @@
+<div class="container" ng-controller="themeCtrl">
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="wrapper wrapper-content animated fadeInRight">
+    
+                <div class="ibox-content m-b-sm border-bottom">
+                    <div class="p-xs">
+                        <div class="pull-left m-r-md">
+                            <i class="fa fa-globe text-navy mid-icon"></i>
+                        </div>
+                        <h2>Üdvözlünk a Fórumon {{loggedUser}}!</h2>
+                        <span>Jó beszélgetést kívánunk!</span>
+                    </div>
+                </div>
+                <div class="ibox-content forum-container">
+                    <div class="forum-item active" ng-repeat="forum in forums">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="forum-icon">
+                                    <i class="fa fa-shield"></i>
+                                </div>
+                                    <a href="#!/forum/{{forum.id}}" class="forum-item-title" ng-click="forumID(forum.id,forum.title)">{{forum.title}}</button></a><div class="text-end" ng-if="rank">
+                                </div>
+                                <div class="forum-sub-title">{{forum.shortDesc}}</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
