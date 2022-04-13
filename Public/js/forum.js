@@ -41,7 +41,12 @@ app.config(function($routeProvider) {
         .when('/passmod', {
             templateUrl: 'passmod.html',
             controller: 'userCtrl'
+        })
+        .when('/theme', {
+            templateUrl: 'theme.html',
+            controller: 'themeCtrl'
         });
+
 });
 
 

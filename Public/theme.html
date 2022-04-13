@@ -2,10 +2,12 @@
     <div>
         <div class="form-floating mb-3">
             <h4>Új téma:</h4>
-            <input type="text" class="form-control" id="themeTitle" placeholder="Téma címe.." ng-model="themeTitle">
-            <label for="themeTitle">Téma címe..</label>
+            <input type="text" class="form-control" id="themeTitle" placeholder="" ng-model="themeTitle">
+            <label for="themeTitle"></label>
         </div>
-        <button ng-click="insert()">Felvesz</button>
+        <button class="btn btn-primary mb-3" ng-click="insert()" ng-if="!upgrade">Felvesz</button>
+        <button class="btn btn-warning mb-3" ng-click="modif()" ng-if="upgrade">Módosít</button>
+
     </div>
 
 
@@ -19,14 +21,14 @@
         </thead>
 
         <tbody>
-            <tr>
-                <td>{{id}}</td >
-                <td>{{user_id}}</td>
-                <td>{{name}}</td>
-                <td>{{timestamp}}</td>
+            <tr ng-repeat="item in forums">
+                <td>{{$index+1}}</td >
+                <td>{{item.user_id}}</td>
+                <td>{{item.name}}</td>
+                <td>{{item.timestamp}}</td>
                 <td>
-                    <button ng-click="mod()">Mod</button>
-                    <button ng-click="del()">Del</button>
+                    <button class="btn btn-primary mb-3" ng-click="mod(item.id)">Módosít</button>
+                    <button class="btn btn-primary mb-3" ng-click="del(item.id)">Töröl</button>
                 </td>
             </tr>
         </tbody>
