@@ -35,14 +35,35 @@ app.config(function($routeProvider) {
             controller: 'loginCtrl'
         })
         .when('/profilmod', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                }
+            },
             templateUrl: 'profilmod.html',
             controller: 'userCtrl'
         })
         .when('/passmod', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn) {
+                        $location.path('/');
+                    }
+                }
+            },
             templateUrl: 'passmod.html',
             controller: 'userCtrl'
         })
         .when('/theme', {
+            resolve: {
+                function($location, $rootScope) {
+                    if (!$rootScope.loggedIn || $rootScope.loggedUserRight != 0) {
+                        $location.path('/');
+                    }
+                }
+            },
             templateUrl: 'theme.html',
             controller: 'themeCtrl'
         })
