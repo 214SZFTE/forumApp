@@ -46,4 +46,37 @@ app.controller('userCtrl', function($scope, $rootScope, dbFactory, fileUpload) {
         });
     }
 
+    $scope.passmod = function() {
+        if ($scope.user.oldpass == null || $scope.user.newpass1 == null || $scope.user.newpass2 == null) {
+            alert('Nem adtál meg minden adatot!');
+        } else {
+            if ($scope.user.newpass1 != $scope.user.newpass2) {
+                alert('A megadott új jelszavak nem egyeznek!');
+            } else {
+                let pattern = /^[a-zA-Z0-9]{8,}$/;
+                if (!$scope.user.newpass1.match(pattern)) {
+                    alert("A jelszó nem felel meg a minimális biztonsági kritériumoknak!");
+                } else {
+                    dbFactory.select('user', 'id', $rootScope.loggedUserID)
+                        .then(function(response) {
+
+                            if (response[0].password != CryptoJS.SHA1($scope.user.oldpass).toString()) {
+                                alert('Nem megfelelő a jelenlegi jelszó!');
+                            } else {
+
+                                let values = {
+                                    "password": CryptoJS.SHA1($scope.user.newpass1).toString()
+                                }
+
+                                dbFactory.update('user', $rootScope.loggedUserID, values)
+                                    .then(function(res) {
+                                        $scope.user = {};
+                                        alert('A jelszó módosult!');
+                                    });
+                            }
+                        });
+                }
+            }
+        }
+    }
 });

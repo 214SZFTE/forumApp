@@ -9,10 +9,14 @@
         <label for="olpass">Jelenlegi jelszó...</label>
     </div>
     <div class="form-floating mb-3">
-        <input type="password" class="form-control" id="oldpass" placeholder="Jelenlegi jelszó..." ng-model="user.oldpass">
-        <label for="floatingInput">Jelenlegi jelszó...</label>
+        <input type="password" class="form-control" id="newpass1" placeholder="Új jelszó..." ng-model="user.newpass1">
+        <label for="newpass1">Új jelszó...</label>
+    </div>
+    <div class="form-floating mb-3">
+        <input type="password" class="form-control" id="newpass2" placeholder="Új jelszó megerősítése..." ng-model="user.newpass2">
+        <label for="newpass2">Új jelszó megerősítése...</label>
     </div>
 
-    <button class="btn btn-primary mb-3" ng-click="modify()">Módosítás</button>
-    <div>{{serverResponse}}</div>
+    <button class="btn btn-primary mb-3" ng-click="passmod()">Módosítás</button>
+
 </div>
