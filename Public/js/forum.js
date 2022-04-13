@@ -37,6 +37,10 @@ app.config(function($routeProvider) {
         .when('/profilmod', {
             templateUrl: 'profilmod.html',
             controller: 'userCtrl'
+        })
+        .when('/theme', {
+            templateUrl: 'theme.html',
+            controller: 'themeCtrl'
         });
 });
 
