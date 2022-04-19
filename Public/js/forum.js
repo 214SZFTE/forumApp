@@ -56,7 +56,7 @@ app.config(function($routeProvider) {
             templateUrl: 'passmod.html',
             controller: 'userCtrl'
         })
-        .when('/theme', {
+        .when('/temak', {
             resolve: {
                 function($location, $rootScope) {
                     if (!$rootScope.loggedIn || $rootScope.loggedUserRight != 0) {
