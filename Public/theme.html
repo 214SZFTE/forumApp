@@ -17,16 +17,16 @@
             <th>Létrehozta</th>
             <th>Téma Címe</th>
             <th>Létrehozás ideje</th>
-            <th>Műveletek</th>
+            <th class="text-end">Műveletek</th>
         </thead>
 
         <tbody>
             <tr ng-repeat="item in forums">
                 <td>{{$index+1}}</td >
-                <td>{{item.user_id}}</td>
+                <td>{{item.userName}}</td>
                 <td>{{item.name}}</td>
                 <td>{{item.timestamp | date:'yyyy-MM-dd HH:mm:ss'}}</td>
-                <td>
+                <td class="text-end">
                     <button class="btn btn-primary mb-3" ng-click="mod(item.id)">Módosít</button>
                     <button class="btn btn-primary mb-3" ng-click="del(item.id)">Töröl</button>
                 </td>

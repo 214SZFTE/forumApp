@@ -3,8 +3,14 @@ app.controller('themeCtrl', function($scope,dbFactory,$rootScope) {
     $scope.forums=[];
     $scope.$upgrade=false;
     $scope.ModThemeId='';
-    dbFactory.selectAll('theme').then(function(res){
-        $scope.forums=res;
+    dbFactory.selectAll('theme').then(function(res){  
+        res.forEach(forumTheme => {
+            dbFactory.select('user','id',forumTheme.user_id)
+            .then(function(res){
+                Object.assign(forumTheme, {userName: res[0].username});
+            })
+            $scope.forums.push(forumTheme);
+        });
     })
     
     $scope.insert=function(){
@@ -18,7 +24,7 @@ app.controller('themeCtrl', function($scope,dbFactory,$rootScope) {
                     let data = {
                             user_id:$rootScope.loggedUserID,	
                             name:$scope.themeTitle,
-                            timestamp:'NOW()'
+                            timestamp:'CURRENT_TIMESTAMP'
                     }
 
                     dbFactory.insert('theme', data).then(function(res) {
@@ -26,7 +32,8 @@ app.controller('themeCtrl', function($scope,dbFactory,$rootScope) {
                                 id:res.insertId,
                                 user_id:$rootScope.loggedUserID,
                                 name:data.name,
-                                timestamp:Date.now()
+                                timestamp:Date.now(),
+                                userName:$rootScope.loggedUser
                         }
                         
                         $scope.forums.push(newtheme)
